@@ -1,10 +1,10 @@
 # DEFINE ALL YOUR VARIABLES HERE
 
 instance_type = "t2.medium"
-ami           = "ami-0e86e20dae9224db8"   # Ubuntu 24.04
-key_name      = "key"                     # Replace with your key-name without .pem extension
+ami           = "ami-0e8d228ad90af673b"   # Ubuntu 24.04
+key_name      = "EC2"                     # Replace with your key-name without .pem extension
 volume_size   = 30
-region_name   = "us-east-1"
+region_name   = "eu-west-2"
 server_name   = "JENKINS-SERVER"
 
 # Note: 
