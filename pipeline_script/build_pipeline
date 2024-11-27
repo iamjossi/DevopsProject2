@@ -78,9 +78,9 @@ pipeline {
                 withCredentials([string(credentialsId: 'access-key', variable: 'AWS_ACCESS_KEY'), 
                                  string(credentialsId: 'secret-key', variable: 'AWS_SECRET_KEY')]) {
                     sh """
-                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${params.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com
-                    docker tag ${params.ECR_REPO_NAME} ${params.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/${params.ECR_REPO_NAME}:${BUILD_NUMBER}
-                    docker tag ${params.ECR_REPO_NAME} ${params.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/${params.ECR_REPO_NAME}:latest
+                    aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${params.AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
+                    docker tag ${params.ECR_REPO_NAME} ${params.AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/${params.ECR_REPO_NAME}:${BUILD_NUMBER}
+                    docker tag ${params.ECR_REPO_NAME} ${params.AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/${params.ECR_REPO_NAME}:latest
                     """
                 }
             }
@@ -91,8 +91,8 @@ pipeline {
                 withCredentials([string(credentialsId: 'access-key', variable: 'AWS_ACCESS_KEY'), 
                                  string(credentialsId: 'secret-key', variable: 'AWS_SECRET_KEY')]) {
                     sh """
-                    docker push ${params.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/${params.ECR_REPO_NAME}:${BUILD_NUMBER}
-                    docker push ${params.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/${params.ECR_REPO_NAME}:latest
+                    docker push ${params.AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/${params.ECR_REPO_NAME}:${BUILD_NUMBER}
+                    docker push ${params.AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/${params.ECR_REPO_NAME}:latest
                     """
                 }
             }
@@ -101,8 +101,8 @@ pipeline {
         stage('10. Cleanup Images') {
             steps {
                 sh """
-                docker rmi ${params.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/${params.ECR_REPO_NAME}:${BUILD_NUMBER}
-                docker rmi ${params.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/${params.ECR_REPO_NAME}:latest
+                docker rmi ${params.AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/${params.ECR_REPO_NAME}:${BUILD_NUMBER}
+                docker rmi ${params.AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com/${params.ECR_REPO_NAME}:latest
 		docker images
                 """
             }
