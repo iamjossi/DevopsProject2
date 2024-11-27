@@ -3,7 +3,7 @@ pipeline {
     
     parameters {
         string(name: 'ECR_REPO_NAME', defaultValue: 'amazon-prime', description: 'Enter repository name')
-        string(name: 'AWS_ACCOUNT_ID', defaultValue: '123456789012', description: 'Enter AWS Account ID') // Added missing quote
+        string(name: 'AWS_ACCOUNT_ID', defaultValue: '637423240589', description: 'Enter AWS Account ID') // Added missing quote
     }
     
     tools {
@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage('1. Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/pandacloud1/DevopsProject2.git'
+                git branch: 'main', url: 'https://github.com/iamjossi/DevopsProject2.git'
             }
         }
         
@@ -66,8 +66,8 @@ pipeline {
                     sh """
                     aws configure set aws_access_key_id $AWS_ACCESS_KEY
                     aws configure set aws_secret_access_key $AWS_SECRET_KEY
-                    aws ecr describe-repositories --repository-names ${params.ECR_REPO_NAME} --region us-east-1 || \
-                    aws ecr create-repository --repository-name ${params.ECR_REPO_NAME} --region us-east-1
+                    aws ecr describe-repositories --repository-names ${params.ECR_REPO_NAME} --region eu-west-2 || \
+                    aws ecr create-repository --repository-name ${params.ECR_REPO_NAME} --region eu-west-2
                     """
                 }
             }
